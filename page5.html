@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resource Center</title>
+
+<style>
+
+    :root {
+        --bg-color: #F4FAF5;
+        --card-bg: #FFFFFF;
+        --accent: #A3D9A5;
+        --accent-dark: #4C8F5A;
+        --text-color: #1E2A23;
+        --text-light: #555;
+        --card-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    #theme-toggle:checked ~ .page {
+        --bg-color: #1E1E1E;
+        --card-bg: #2A2A2A;
+        --accent: #82C27F;
+        --accent-dark: #3A7F42;
+        --text-color: #F0F0F0;
+        --text-light: #BBB;
+        --card-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+    }
+
+    .page {
+        background: var(--bg-color);
+        color: var(--text-color);
+        transition: all 0.3s ease;
+        min-height: 100vh;
+    }
+
+    nav {
+        background: var(--card-bg);
+        padding: 2rem 3rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        transition: 0.3s ease, color 0.3s ease;
+    }
+
+    nav a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    nav a:hover {
+        color: var(--accent-dark);
+    }
+
+    .tab-btn {
+        flex: 1;
+        padding: 15px;
+        border: none;
+        background: var(--bg-color);
+        color: var(--accent-dark);
+        font-size: 1em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s, color 0.3s;
+        text-align: center;
+    }
+
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+
+    .card img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+    }
+
+    .card h3 {
+        margin: 0 0 10px;
+        color: var(--accent-dark);
+    }
+
+    .card p {
+        margin: 0;
+        font-size: 0.95em;
+        color: var(--text-light);
+    }
+
+    h2 {
+        color: var(--accent-dark);
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95em;
+        color: var(--text-color);
+    }
+
+    table th, table td {
+        padding: 10px;
+        border: 1px solid #C8E6C9;
+        text-align: left;
+    }
+
+    table th {
+        background: var(--accent-dark);
+        color: #fff;
+    }
+
+    footer {
+        background: var(--accent-dark);
+        padding: 20px;
+        text-align: center;
+        color: white;
+        font-size: 15px;
+        margin-top: 3rem;
+    }
+
+
+    #theme-toggle {
+        display: none;
+    }
+
+    .mode-switch {
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        z-index: 20;
+        font-size: 0.9rem;
+        user-select: none;
+        color: var(--text-color);
+        cursor: pointer;
+    }
+
+    .switch-label {
+        width: 50px;
+        height: 25px;
+        background: #ccc;
+        border-radius: 50px;
+        position: relative;
+        transition: background 0.3s ease;
+        display: inline-block;
+    }
+
+    .switch-label::after {
+        content: '';
+        position: absolute;
+        width: 21px;
+        height: 21px;
+        background: white;
+        border-radius: 50%;
+        top: 2px;
+        left: 2px;
+        transition: transform 0.3s ease;
+    }
+
+    #theme-toggle:checked + .mode-switch .switch-label {
+        background: var(--accent-dark);
+    }
+
+    #theme-toggle:checked + .mode-switch .switch-label::after {
+        transform: translateX(25px);
+    }
+
+
+    .tabs-wrapper {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .tab-radio {
+        display: none;
+    }
+
+    .tabs-header {
+        display: flex;
+        border-bottom: 2px solid #C8E6C9;
+        margin: 0 20px;
+    }
+
+    .tabs-content {
+        padding: 30px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+  
+    #tab1-radio:checked ~ .tabs-content #tab1,
+    #tab2-radio:checked ~ .tabs-content #tab2,
+    #tab3-radio:checked ~ .tabs-content #tab3,
+    #tab4-radio:checked ~ .tabs-content #tab4 {
+        display: block;
+    }
+
+    #tab1-radio:checked ~ .tabs-header label[for="tab1-radio"],
+    #tab2-radio:checked ~ .tabs-header label[for="tab2-radio"],
+    #tab3-radio:checked ~ .tabs-header label[for="tab3-radio"],
+    #tab4-radio:checked ~ .tabs-header label[for="tab4-radio"] {
+        background: var(--accent-dark);
+        color: #fff;
+    }
+
+    .top-left-logo {
+        position: absolute;
+        top: 0px;
+        left: 50px;
+    }
+
+    .top-left-logo img {
+        width: 110px;   
+        height: auto;
+        border-radius: 5px;
+    }
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="theme-toggle">
+<label for="theme-toggle" class="mode-switch">
+    <span>☀</span>
+    <span class="switch-label"></span>
+    <span>🌙</span>
+</label>
+
+<div class="page">
+
+<nav>
+     <div class="top-left-logo">
+        <img src="https://i.ibb.co/4ZtdJYW7/Budget-Living-Hub-transparent.png" alt="Logo">
+     </div>
+    <a href="page1.html">Home</a>
+    <a href="page2.html">Community News</a>
+    <a href="page3.html">Local Events</a>
+    <a href="page4.html">Directory</a>
+    <a href="page5.html">Resources Center</a>
+    <a href="page6.html">Feedback</a>
+</nav>
+
+<div style="width:100%; text-align:center; margin-top:20px; margin-bottom: 5%;">
+    <h1 style="color:var(--text-color); margin-bottom:0;">Resources Center</h1>
+    <p style="text-align:center; color:var(--text-light); margin-top:5px;">
+        Explore tips, guides, and budget-friendly resources to make everyday living easier and smarter.
+    </p>
+</div>
+
+<div class="tabs-wrapper">
+
+    <input type="radio" name="tabset" id="tab1-radio" class="tab-radio" checked>
+    <input type="radio" name="tabset" id="tab2-radio" class="tab-radio">
+    <input type="radio" name="tabset" id="tab3-radio" class="tab-radio">
+    <input type="radio" name="tabset" id="tab4-radio" class="tab-radio">
+
+    <div class="tabs-header">
+        <label for="tab1-radio" class="tab-btn">Budget Recipes</label>
+        <label for="tab2-radio" class="tab-btn">Shopping Tips</label>
+        <label for="tab3-radio" class="tab-btn">Storage Guide</label>
+        <label for="tab4-radio" class="tab-btn">Price Comparison</label>
+    </div>
+
+    <div class="tabs-content">
+
+        <div id="tab1" class="tab-content">
+            <h2>Budget Recipes</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <img src="https://blog.hellofresh.com/wp-content/uploads/2017/11/HF171017_R12AB_W49_US_Main_pinterest_low.jpg" alt="Simple Meal"/>
+                    <div style="padding:15px;">
+                        <h3>Meals under 500 Rs</h3>
+                        <p>Delicious recipes that don’t break your budget.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSetH1ODf1jWqOiTEBDgeCxKCv_HOHKpjPmDA&s" alt="Breakfast"/>
+                    <div style="padding:15px;">
+                        <h3>Quick Breakfasts</h3>
+                        <p>Start your day healthy and cheap.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80" alt="Dinner"/>
+                    <div style="padding:15px;">
+                        <h3>Simple Dinners</h3>
+                        <p>Easy ingredients, big flavors.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://t4.ftcdn.net/jpg/02/18/89/43/360_F_218894399_UOTpajKwctNBlgUF8eSWFQr5Euz6NU4h.jpg" alt="Snack"/>
+                    <div style="padding:15px;">
+                        <h3>On-the-go Snacks</h3>
+                        <p>Healthy, quick, and budget-friendly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab2" class="tab-content">
+            <h2>Smart Shopping Tips</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMwvhxDEBCkhyo348TeJrgsJE-CnHEXspzOw&s" alt="Price Labels"/>
+                    <div style="padding:15px;">
+                        <h3>Read Price Labels</h3>
+                        <p>Understand weight, unit cost, and how labels work.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://www.app.com.pk/wp-content/uploads/2025/07/online-shopping.webp" alt="Sale Shopping"/>
+                    <div style="padding:15px;">
+                        <h3>Best Times to Shop</h3>
+                        <p>When markets or stores tend to discount more.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4cBMgwWfqcUJ5ubpsCbmShlV3Ko3DtGZ5Yg&s" alt="Planning"/>
+                    <div style="padding:15px;">
+                        <h3>Plan Your Trip</h3>
+                        <p>Avoid overbuying or impulse purchases.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://www.shutterstock.com/image-illustration/grocery-expenses-budget-consumerism-concept-600w-1141730477.jpg" alt="Budget Shopping"/>
+                    <div style="padding:15px;">
+                        <h3>Budget Shopping</h3>
+                        <p>Tips to maximize value without overspending.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab3" class="tab-content">
+            <h2>Storage Guide</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcb099qpqis3Fxf4QYryRHGooLaen5HKOslQ&s" alt="Produce Storage"/>
+                    <div style="padding:15px;">
+                        <h3>Make Produce Last</h3>
+                        <p>Tips on temperature, humidity, and storage containers.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2020/03/20/fn_freezer-bags-vegetables-getty_s4x3.jpg.rend.hgtvcom.1280.960.85.suffix/1584740715847.webp" alt="Freezing"/>
+                    <div style="padding:15px;">
+                        <h3>Freezing Leftovers</h3>
+                        <p>Best practices for freezing and thawing food safely.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnQtnQpIHcimsewSaqpbfoPRSkiplpXUv81A&s" alt="Grains Storage"/>
+                    <div style="padding:15px;">
+                        <h3>Grains & Spices</h3>
+                        <p>How to keep grains and spices fresh for longer.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZZ5iQRImrMxrqyxULp7usg1Yo96sp2dYeiw&s" alt="Storage Tips"/>
+                    <div style="padding:15px;">
+                        <h3>Proper Storage Tips</h3>
+                        <p>Small changes for longer freshness and less waste.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab4" class="tab-content">
+            <h2>Price Comparison</h2>
+            <div style="overflow-x:auto;">
+                <table>
+                    <tr>
+                      <th>Item</th>
+                      <th>Local Market Price</th>
+                      <th>Normal Price</th>
+                    </tr>
+                    <tr><td>Rice (1 kg)</td><td>120</td><td>150</td></tr>
+                    <tr><td>Milk (1 L)</td><td>130</td><td>160</td></tr>
+                    <tr><td>Chicken (1 kg)</td><td>550</td><td>600</td></tr>
+                    <tr><td>Wheat (1 kg)</td><td>90</td><td>110</td></tr>
+                    <tr><td>Sugar (1 kg)</td><td>100</td><td>130</td></tr>
+                    <tr><td>Cooking Oil (1 L)</td><td>300</td><td>400</td></tr>
+                    <tr><td>Eggs (12 pcs)</td><td>180</td><td>220</td></tr>
+                    <tr><td>Fish (1 kg)</td><td>650</td><td>800</td></tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    © 2025 Budget Living Hub Pakistan | Save Money and Time
+</footer>
+
+</div>
+
+</body>
+</html>

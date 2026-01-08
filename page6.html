@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budget Living Hub – Contact</title>
+
+<style>
+
+    :root {
+        --green: #4CAF50;
+        --light-green: #EAF7EA;
+        --dark-green: #2E7D32;
+        --text-dark: #333;
+        --text-light: #555;
+        --card-bg: #ffffff;
+        --background: #f7fdf7;
+        --card-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    #theme-toggle:checked ~ .page {
+        --background: #1a1f1c;
+        --card-bg: #242b26;
+        --green: #5FA877;
+        --dark-green: #A3D9A5;
+        --text-dark: #E6EDE9;
+        --text-light: #d6e7d8;
+        --card-shadow: 0 4px 12px rgba(255,255,255,0.08);
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .page {
+        background: var(--background);
+        color: var(--text-dark);
+        transition: background 0.4s, color 0.4s;
+    }
+
+    #theme-toggle {
+        display: none;
+    }
+
+    .toggle-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--green);
+        color: white;
+        padding: 10px 14px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        z-index: 9999;
+        transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    #theme-toggle:checked + .toggle-btn {
+        transform: rotate(180deg);
+    }
+
+
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        padding: 2rem 3rem;
+        background: #FFFFFF;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    #theme-toggle:checked ~ .page nav {
+        background: #242b26;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 500;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    h1 {
+        text-align: center;
+        color: var(--text-dark);
+        margin-bottom: .5rem;
+    }
+
+    p.center {
+        text-align: center;
+        color: var(--text-light);
+    }
+
+
+    .card {
+        background: var(--card-bg);
+        padding: 1.8rem;
+        border-radius: 15px;
+        margin: 2rem 0;
+        box-shadow: var(--card-shadow);
+        transition: background 0.4s, color 0.4s;
+    }
+
+
+    form label {
+        font-weight: 600;
+        margin-top: 1rem;
+        display: block;
+        color: var(--text-dark);
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 0.9rem;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        margin-top: .3rem;
+        font-size: 1rem;
+        background: #fdfdfd;
+    }
+
+    #theme-toggle:checked ~ .page input,
+    #theme-toggle:checked ~ .page textarea {
+        background: #363f39;
+        border-color: #555;
+        color: var(--text-light);
+    }
+
+    textarea {
+        height: 120px;
+    }
+
+    button {
+        width: 100%;
+        background: var(--green);
+        color: white;
+        padding: 0.9rem;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        margin-top: 1rem;
+        font-weight: bold;
+        transition: background 0.3s ease;
+    }
+
+    button:hover {
+        background: var(--dark-green);
+    }
+
+    footer {
+        background: var(--green);
+        padding: 1rem;
+        text-align: center;
+        color: white;
+        margin-top: 3rem;
+    }
+
+    #theme-toggle:checked ~ .page footer {
+        background: #2E7D32;
+    }
+     .top-left-logo {
+    position: absolute;
+    top: 0px;
+    left: 50px;
+}
+
+.top-left-logo img {
+    width: 110px;   
+    height: auto;
+    border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<input type="checkbox" id="theme-toggle">
+<label for="theme-toggle" class="toggle-btn">🌙</label>
+
+<div class="page">
+
+<nav>
+     <div class="top-left-logo">
+    <img src="https://i.ibb.co/4ZtdJYW7/Budget-Living-Hub-transparent.png" alt="Logo">
+  </div>
+    <a href="page1.html">Home</a>
+    <a href="page2.html">Community News</a>
+    <a href="page3.html">Local Events</a>
+    <a href="page4.html">Directory</a>
+    <a href="page5.html">Resources Center</a>
+    <a href="page6.html">Feedback</a>
+</nav>
+
+<section class="container">
+
+    <h1>Contact & Feedback</h1>
+    <p class="center">Share your questions or suggestions with us.</p>
+
+    <div class="card">
+        <h3 style="color: var(--dark-green);">Send Your Message</h3>
+        <form>
+            <label>Your Name:</label>
+            <input type="text" placeholder="Enter your name" required>
+
+            <label>Your Email:</label>
+            <input type="email" placeholder="Enter your email" required>
+
+            <label>Subject:</label>
+            <input type="text" placeholder="Enter subject" required>
+
+            <label>Message:</label>
+            <textarea placeholder="Write message here..." required></textarea>
+
+            <button>Submit</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h3 style="color: var(--dark-green);">Our Location</h3>
+
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3322.3391576671074!2d73.01556587573149!3d33.65938127333502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbf9399b302ad%3A0x4b51ab0b46b6a4c4!2sFAST%20NUCES%20Islamabad%20Campus!5e0!3m2!1sen!2s!4v1700000000000"
+            width="100%" 
+            height="350"
+            style="border:0; border-radius:12px;" 
+            allowfullscreen=""
+            loading="lazy">
+        </iframe>
+    </div>
+
+</section>
+
+<footer>
+    © 2025 Budget Living Hub Pakistan | Save Money and Time
+</footer>
+
+</div>
+
+</body>
+</html>

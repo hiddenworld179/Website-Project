@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome | Budget Living Hub Pakistan</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --bg-color: #F4FAF5;
+        --card-bg: #FFFFFF;
+        --accent: #A3D9A5;
+        --accent-dark: #4C8F5A;
+        --text-color: #1E2A23;
+        --shadow: rgba(0, 0, 0, 0.08);
+        --hero-bg: linear-gradient(to right, #E8F8EB, #F4FAF5);
+        --hero-bubble-bg: #C8ECCB;
+    }
+
+    #theme-toggle:checked ~ .page {
+        --bg-color: #1E1E1E;
+        --card-bg: #2A2A2A;
+        --accent: #6EBF6E;
+        --accent-dark: #4CAF50;
+        --text-color: #F0F0F0;
+        --shadow: rgba(0,0,0,0.4);
+        --hero-bg: linear-gradient(to right, #2A2A2A, #1E1E1E);
+        --hero-bubble-bg: #3A3A3A;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .page {
+        background: var(--bg-color);
+        color: var(--text-color);
+        transition: background 0.4s, color 0.4s;
+        min-height: 100vh;
+    }
+
+    nav {
+        background: var(--card-bg);
+        padding: 2rem 3rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        box-shadow: 0 2px 6px var(--shadow);
+        position: relative;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    nav a:hover {
+        color: var(--accent-dark);
+    }
+
+
+    #theme-toggle {
+        display: none;
+    }
+
+    .toggle-btn {
+        position: fixed;
+        right: 20px;
+        top: 10px;
+        padding: 5px 10px;
+        border-radius: 20px;
+        background: var(--accent);
+        color: #fff;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background 0.3s;
+        z-index: 50;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .toggle-btn:hover {
+        background: var(--accent-dark);
+    }
+
+    #theme-toggle:checked + .toggle-btn {
+        background: var(--accent-dark);
+    }
+
+    .hero {
+        text-align: center;
+        padding: 4rem 1rem;
+        background: var(--hero-bg);
+        position: relative;
+        transition: background 0.4s;
+    }
+
+    .hero h1 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--accent-dark);
+        margin-bottom: 1rem;
+    }
+
+    .hero p {
+        color: var(--text-color);
+        max-width: 700px;
+        margin: auto;
+        font-size: 1.1rem;
+    }
+
+    .hero::before, .hero::after {
+        content: "";
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background: var(--hero-bubble-bg);
+        border-radius: 50%;
+        z-index: -1;
+        transition: background 0.4s;
+    }
+
+    .hero::before { top: -80px; left: -150px; }
+    .hero::after { bottom: -100px; right: -150px; }
+
+    .feature-section {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .feature-card {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        box-shadow: 0 4px 10px var(--shadow);
+        transition: 0.3s, background 0.4s, color 0.4s;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-card img {
+        width: 80px;
+        margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+        color: var(--accent-dark);
+        margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+        font-size: 0.95rem;
+        color: var(--text-color);
+    }
+
+    footer {
+        background: var(--accent);
+        text-align: center;
+        padding: 1rem;
+        color: #fff;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+    }
+
+    .top-left-logo {
+        position: absolute;
+        top: 0px;
+        left: 50px;
+    }
+
+    .top-left-logo img {
+        width: 110px;
+        height: auto;
+        border-radius: 5px;
+    }
+
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="theme-toggle">
+<label for="theme-toggle" class="toggle-btn">🌙</label>
+
+<div class="page">
+
+<nav>
+    <div class="top-left-logo">
+        <img src="https://i.ibb.co/4ZtdJYW7/Budget-Living-Hub-transparent.png" alt="Logo">
+    </div>
+  
+    <a href="page1.html">Home</a>
+    <a href="page2.html">Community News</a>
+    <a href="page3.html">Local Events</a>
+    <a href="page4.html">Directory</a>
+    <a href="page5.html">Resource Center</a>
+    <a href="page6.html">Feedback</a>
+</nav>
+ 
+<section class="hero">
+    <h1>Welcome to Budget Living Hub – Pakistan</h1>
+    <p>Helping you save money, live smarter, and make better financial decisions.</p>
+</section>
+
+<section class="feature-section">
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Grocery Prices">
+            <h3>Weekly Grocery Prices</h3>
+            <p>Track real-time price changes in flour, sugar, vegetables, and daily essentials.</p>
+        </div>
+
+        <div class="feature-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/892/892458.png" alt="Affordable Clothing">
+            <h3>Affordable Clothing Brands</h3>
+            <p>Discover brands offering Rs. 2,000–4,000 outfits instead of expensive Rs. 10,000 suits.</p>
+        </div>
+
+        <div class="feature-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3106/3106921.png" alt="Thrifting Resale">
+            <h3>Thrifting & Resale Deals</h3>
+            <p>Find pre-loved items in excellent condition at budget-friendly rates.</p>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+      © 2025 Budget Living Hub Pakistan | Save Money and Time
+</footer>
+
+</div> <!-- end .page -->
+
+</body>
+</html>
